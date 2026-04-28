@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../modules/vpc"
+  source = "./modules/vpc"
   cidr_block= var.cidr_block
   public_subnet_cidr = var.public_subnet_cidr
   private_subnet_cidr = var.private_subnet_cidr
@@ -8,14 +8,14 @@ module "vpc" {
 }
 
 module "alb" {
-  source = "../modules/alb"
+  source = "./modules/alb"
   vpc_id = module.vpc.vpc_id
   public_subnet_ids = module.vpc.public_subnet_ids
 
 }
 
 module "ec2" {
-  source = "../modules/ec2"
+  source = "./modules/ec2"
   vpc_id = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnet_ids
   ami_id = var.ami_id
